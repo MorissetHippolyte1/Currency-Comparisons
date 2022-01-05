@@ -11,3 +11,23 @@ function apitest (){
     
 }
 apitest;
+
+var amountFormEl = document.querySelector('#currency-form');
+
+function handleSearchFormSubmit(event) {
+  event.preventDefault();
+
+  var searchInputVal = document.querySelector('#amount-input').value;
+  var formatInputVal = document.querySelector('#format-input').value;
+
+  if (!searchInputVal) {
+    console.error('You need a search input value!');
+    return;
+  }
+
+  var queryString = './search-results.html?q=' + searchInputVal + '&format=' + formatInputVal;
+
+  location.assign(queryString);
+}
+
+amountFormEl.addEventListener('submit', handleSearchFormSubmit);
