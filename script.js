@@ -17,15 +17,15 @@ var amountFormEl = document.querySelector('#currency-form');
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
-  var searchInputVal = document.querySelector('#amount-input').value;
+  var amountInputVal = document.querySelector('#amount-input').value;
   var formatInputVal = document.querySelector('#format-input').value;
 
-  if (!searchInputVal) {
+  if (!amountInputVal) {
     console.error('You need a search input value!');
     return;
   }
 
-  var queryString = './search-results.html?q=' + searchInputVal + '&format=' + formatInputVal;
+  var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
 
   location.assign(queryString);
 }
