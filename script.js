@@ -1,20 +1,19 @@
-var titleEl = document.querySelector('.title');
-var searchFormEl = document.querySelector('#search-form');
-var amountInputEl = document.querySelector('#amount-input');
-var formatInputEl = document.querySelector('format-input');
-var compareEl = document.querySelector('.compare');
-var addSavedEl = document.querySelector('.addSaved');
-var boxHeader = document.querySelector('boxHeader');
-var boxTitle = document.querySelector('boxTitle');
-var boxInfoEl = document.querySelector('.boxInfo');
-var currencyBoxEl = document.querySelector('.currencyBoxEl');
-var currencyCompareEl = document.querySelector('.currencyCompare');
-var newsEl = document.querySelector('.news');
-var articleEl = document.querySelector('.article');
+
+var titleEl = document.querySelector('.title')
+var searchFormEl = document.querySelector('#search-form')
+var amountInputEl = document.querySelector('#amount-input')
+var formatInputEl = document.querySelector('format-input')
+var compareEl = document.querySelector('.compare')
+var addSavedEl = document.querySelector('.addSaved')
+var boxHeader = document.querySelector('boxHeader')
+var boxTitle = document.querySelector('boxTitle')
+var boxInfoEl = document.querySelector('.boxInfo')
+var currencyBoxEl = document.querySelector('.currencyBoxEl')
+var currencyCompareEl = document.querySelector('.currencyCompare')
+var newsEl = document.querySelector('.news')
+var articleEl = document.querySelector('.article')
 var cryptoPrice = document.getElementById("crypto");
 var govPrice = document.getElementById("gov");
-
-
 
 function currencylistusd (){
     var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
