@@ -1,3 +1,4 @@
+
 var titleEl = document.querySelector('.title')
 var searchFormEl = document.querySelector('#search-form')
 var amountInputEl = document.querySelector('#amount-input')
@@ -11,6 +12,8 @@ var currencyBoxEl = document.querySelector('.currencyBoxEl')
 var currencyCompareEl = document.querySelector('.currencyCompare')
 var newsEl = document.querySelector('.news')
 var articleEl = document.querySelector('.article')
+var cryptoPrice = document.getElementById("crypto");
+var govPrice = document.getElementById("gov");
 
 function currencylistusd (){
     var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
@@ -27,7 +30,7 @@ function currencylistusd (){
 }
 currencylistusd();
 
-function matchcrypto(currency) {
+function matchcrypto(currency, amount) {
     var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
     x= "vs_currency"
     y= currency
@@ -39,10 +42,14 @@ function matchcrypto(currency) {
       .then(function (data) {
         console.log("function input currency");
         console.log(data);
+        for ( var i = 0; i<9;i++){
+          cryptoPrice.appendChild(document.createElement('ul')).textContent = 
+          parseFloat(amount/data[i].current_price).toFixed(2) + " " + data[i].name;
+        }
       });
     
 }
-matchcrypto("czk");
+matchcrypto("usd", 1000000);
 
 function logtop50cryptoprices(currency) {
     var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
@@ -92,10 +99,40 @@ function govcurrencyexchange (currency, amount){
     .then(function (data) {
       console.log("exchange")
       console.log(data);
+      console.log("data value")
+      var govArrayPrice = Object.values(data.rates);
+      var govArrayKey = Object.keys(data.rates);
+      console.log(govArrayPrice);
+      console.log(govArrayKey);
+      for ( var i = 0; i<9;i++){
+        govPrice.appendChild(document.createElement('ul')).textContent = 
+        parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
+      }
     });
   
 }
 govcurrencyexchange("USD", 10);
+
+function news (){
+  fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "crypto-news-live.p.rapidapi.com",
+      "x-rapidapi-key": "1c706ef656msh2980b7876759cc5p1013b9jsn6d3391c16b20"
+    }
+  })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(response => {
+    console.log("news")
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
+news();
 
 var amountFormEl = document.querySelector('#currency-form');
 
