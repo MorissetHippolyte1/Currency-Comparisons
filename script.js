@@ -6,6 +6,7 @@ function currencylistusd (){
         return response.json();
       })
       .then(function (data) {
+        console.log("usd")
         console.log(data);
       });
     
@@ -22,11 +23,12 @@ function matchcrypto(currency) {
         return response.json();
       })
       .then(function (data) {
+        console.log("function input currency");
         console.log(data);
       });
     
 }
-matchcrypto("eur");
+matchcrypto("czk");
 
 function logtop50cryptoprices(currency) {
     var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
@@ -45,6 +47,42 @@ function logtop50cryptoprices(currency) {
     
 }
 logtop50cryptoprices("eur");
+
+function govcurrencylist (){
+  var requestUrl = new URL('https://api.frankfurter.app/currencies?');
+
+
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+  
+}
+govcurrencylist();
+
+function govcurrencyexchange (currency, amount){
+  var requestUrl = new URL('https://api.frankfurter.app/latest?');
+  x= "from"
+  y= currency
+  requestUrl.searchParams.append(x, y);
+  a= "amount"
+  b = amount
+  requestUrl.searchParams.append(a, b);
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log("exchange")
+      console.log(data);
+    });
+  
+}
+govcurrencyexchange("USD", 10);
+
 var amountFormEl = document.querySelector('#currency-form');
 
 function handleSearchFormSubmit(event) {
@@ -62,6 +100,8 @@ function handleSearchFormSubmit(event) {
 
   location.assign(queryString);
 }
+
+
 
 // amountFormEl.addEventListener('submit', handleSearchFormSubmit);
 
