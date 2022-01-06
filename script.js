@@ -1,3 +1,17 @@
+var titleEl = document.queryselector('.title')
+var searchFormEl = document.queryselector('#search-form')
+var amountInputEl = document.queryselector('#amount-input')
+var formatInputEl = document.queryselector('format-input')
+var compareEl = document.queryselector('.compare')
+var addSavedEl = document.queryselector('.addSaved')
+var boxHeader = document.queryselector('boxHeader')
+var boxTitle = document.queryselector('boxTitle')
+var boxInfoEl = document.queryselector('.boxInfo')
+var currencyBoxEl = document.queryselector('.currencyBoxEl')
+var currencyCompareEl = document.queryselector('.currencyCompare')
+var newsEl = document.queryselector('.news')
+var articleEl = document.queryselector('.article')
+
 function currencylistusd (){
     var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
 
