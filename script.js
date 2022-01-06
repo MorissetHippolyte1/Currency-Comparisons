@@ -101,11 +101,8 @@ function handleSearchFormSubmit(event) {
   (queryString);
 }
 
-<<<<<<< HEAD
-amountFormEl.addEventListener('submit', handleSearchFormSubmit);  
-=======
+
 
 
 // amountFormEl.addEventListener('submit', handleSearchFormSubmit);
 
->>>>>>> 346d88818bd2f0135d27a34c42678d0901751572
