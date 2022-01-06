@@ -1,3 +1,17 @@
+var titleEl = document.queryselector('.title')
+var searchFormEl = document.queryselector('#search-form')
+var amountInputEl = document.queryselector('#amount-input')
+var formatInputEl = document.queryselector('format-input')
+var compareEl = document.queryselector('.compare')
+var addSavedEl = document.queryselector('.addSaved')
+var boxHeader = document.queryselector('boxHeader')
+var boxTitle = document.queryselector('boxTitle')
+var boxInfoEl = document.queryselector('.boxInfo')
+var currencyBoxEl = document.queryselector('.currencyBoxEl')
+var currencyCompareEl = document.queryselector('.currencyCompare')
+var newsEl = document.queryselector('.news')
+var articleEl = document.queryselector('.article')
+
 function currencylistusd (){
     var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
 
@@ -109,18 +123,19 @@ var amountFormEl = document.querySelector('#currency-form');
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
-  var searchInputVal = document.querySelector('#amount-input').value;
+  var amountInputVal = document.querySelector('#amount-input').value;
   var formatInputVal = document.querySelector('#format-input').value;
 
-  if (!searchInputVal) {
+  if (!amountInputVal) {
     console.error('You need a search input value!');
     return;
   }
 
-  var queryString = './search-results.html?q=' + searchInputVal + '&format=' + formatInputVal;
+  var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
 
-  location.assign(queryString);
+  (queryString);
 }
+
 
 
 
