@@ -27,7 +27,7 @@ function handleSearchFormSubmit(event) {
 
   var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
 
-  location.assign(queryString);
+  (queryString);
 }
 
 amountFormEl.addEventListener('submit', handleSearchFormSubmit);
