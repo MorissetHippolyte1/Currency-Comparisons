@@ -83,6 +83,27 @@ function govcurrencyexchange (currency, amount){
 }
 govcurrencyexchange("USD", 10);
 
+function news (){
+  fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "crypto-news-live.p.rapidapi.com",
+      "x-rapidapi-key": "1c706ef656msh2980b7876759cc5p1013b9jsn6d3391c16b20"
+    }
+  })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(response => {
+    console.log("news")
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
+news();
+
 var amountFormEl = document.querySelector('#currency-form');
 
 function handleSearchFormSubmit(event) {
