@@ -30,4 +30,4 @@ function handleSearchFormSubmit(event) {
   (queryString);
 }
 
-amountFormEl.addEventListener('submit', handleSearchFormSubmit);
+amountFormEl.addEventListener('submit', handleSearchFormSubmit);  
