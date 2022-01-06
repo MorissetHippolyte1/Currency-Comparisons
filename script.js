@@ -1,16 +1,20 @@
-var titleEl = document.queryselector('.title')
-var searchFormEl = document.queryselector('#search-form')
-var amountInputEl = document.queryselector('#amount-input')
-var formatInputEl = document.queryselector('format-input')
-var compareEl = document.queryselector('.compare')
-var addSavedEl = document.queryselector('.addSaved')
-var boxHeader = document.queryselector('boxHeader')
-var boxTitle = document.queryselector('boxTitle')
-var boxInfoEl = document.queryselector('.boxInfo')
-var currencyBoxEl = document.queryselector('.currencyBoxEl')
-var currencyCompareEl = document.queryselector('.currencyCompare')
-var newsEl = document.queryselector('.news')
-var articleEl = document.queryselector('.article')
+var titleEl = document.querySelector('.title');
+var searchFormEl = document.querySelector('#search-form');
+var amountInputEl = document.querySelector('#amount-input');
+var formatInputEl = document.querySelector('format-input');
+var compareEl = document.querySelector('.compare');
+var addSavedEl = document.querySelector('.addSaved');
+var boxHeader = document.querySelector('boxHeader');
+var boxTitle = document.querySelector('boxTitle');
+var boxInfoEl = document.querySelector('.boxInfo');
+var currencyBoxEl = document.querySelector('.currencyBoxEl');
+var currencyCompareEl = document.querySelector('.currencyCompare');
+var newsEl = document.querySelector('.news');
+var articleEl = document.querySelector('.article');
+var cryptoPrice = document.getElementById("crypto");
+var govPrice = document.getElementById("gov");
+
+
 
 function currencylistusd (){
     var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
@@ -27,7 +31,7 @@ function currencylistusd (){
 }
 currencylistusd();
 
-function matchcrypto(currency) {
+function matchcrypto(currency, amount) {
     var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
     x= "vs_currency"
     y= currency
@@ -39,10 +43,14 @@ function matchcrypto(currency) {
       .then(function (data) {
         console.log("function input currency");
         console.log(data);
+        for ( var i = 0; i<9;i++){
+          cryptoPrice.appendChild(document.createElement('ul')).textContent = 
+          parseFloat(amount/data[i].current_price).toFixed(2) + " " + data[i].name;
+        }
       });
     
 }
-matchcrypto("czk");
+matchcrypto("usd", 1000000);
 
 function logtop50cryptoprices(currency) {
     var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
@@ -92,6 +100,15 @@ function govcurrencyexchange (currency, amount){
     .then(function (data) {
       console.log("exchange")
       console.log(data);
+      console.log("data value")
+      var govArrayPrice = Object.values(data.rates);
+      var govArrayKey = Object.keys(data.rates);
+      console.log(govArrayPrice);
+      console.log(govArrayKey);
+      for ( var i = 0; i<9;i++){
+        govPrice.appendChild(document.createElement('ul')).textContent = 
+        parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
+      }
     });
   
 }
