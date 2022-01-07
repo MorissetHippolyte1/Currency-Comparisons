@@ -12,6 +12,7 @@ var newsEl = document.querySelector('.news')
 var articleEl = document.querySelector('.article')
 var cryptoPrice = document.getElementById("crypto");
 var govPrice = document.getElementById("gov");
+
 var savedPrice = document.getElementById("saved")
 
 compareEl.onclick = handleSearchFormSubmit;
@@ -29,10 +30,12 @@ function currencylistusd() {
       console.log(data);
     });
 
+
 }
 currencylistusd();
 
 function matchcrypto(currency, amount) {
+
   var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
   x = "vs_currency"
   y = currency
@@ -55,6 +58,7 @@ function matchcrypto(currency, amount) {
         cryptoSelector.textContent = data[i].name;
         if (cryptoSelector) {
           formatInputEl.appendChild(cryptoSelector);
+
         }
       }
     });
@@ -115,6 +119,7 @@ function govcurrencyexchange(currency, amount) {
       var govArrayKey = Object.keys(data.rates);
       console.log(govArrayPrice);
       console.log(govArrayKey);
+
       govPrice.innerHTML = "";
       for (var i = 0; i < 4; i++) {
         console.log("whats fgoing on?")
@@ -138,6 +143,7 @@ function govcurrencyexchange(currency, amount) {
 govcurrencyexchange("USD", 10);
 
 function news() {
+
   fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
     "method": "GET",
     "headers": {
@@ -145,6 +151,7 @@ function news() {
       "x-rapidapi-key": "1c706ef656msh2980b7876759cc5p1013b9jsn6d3391c16b20"
     }
   })
+
     .then(function (response) {
       return response.json();
     })
@@ -155,6 +162,7 @@ function news() {
     .catch(err => {
       console.error(err);
     });
+
 }
 news();
 
@@ -175,10 +183,12 @@ else {
   govcurrencyexchange(formatInputVal, amountInputVal);
   matchcrypto(formatInputVal, amountInputVal);
 
+
  // localStorage.setItem(key, value) 
  //getItem.(key)
 // save on array
 }
+\
   var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
 
   (queryString);
@@ -195,8 +205,8 @@ else {
 // document.createElement(variable ), document.body.appendChild(tag)
 // add event listener .addEventListener("click", function() 
 
-
 //}
+
 // amountFormEl.addEventListener('submit', handleSearchFormSubmit);
 
 //input variable from the 
