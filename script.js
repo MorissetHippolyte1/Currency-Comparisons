@@ -105,14 +105,14 @@ function govcurrencyexchange (currency, amount){
       var govArrayKey = Object.keys(data.rates);
       console.log(govArrayPrice);
       console.log(govArrayKey);
-      for ( var i = 0; i<9;i++){
+      for ( var i = 0; i<19;i++){
         govPrice.appendChild(document.createElement('ul')).textContent = 
         parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
       }
     });
   
 }
-govcurrencyexchange("USD", 10);
+govcurrencyexchange("USD", 1000000);
 
 function news (){
   fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
