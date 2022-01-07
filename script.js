@@ -44,6 +44,7 @@ function matchcrypto(currency, amount) {
         for ( var i = 0; i<9;i++){
           cryptoPrice.appendChild(document.createElement('ul')).textContent = 
           parseFloat(amount/data[i].current_price).toFixed(2) + " " + data[i].name;
+        for ( var i = 0; i<19; i++)
           formatInputEl.appendChild(document.createElement('option')).value = "Crypto "  + data[i].name;
         }
       });
@@ -108,7 +109,8 @@ function govcurrencyexchange (currency, amount){
         govPrice.appendChild(document.createElement('ul')).textContent = 
         parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
         for ( var i = 0; i<19; i++){ 
-        formatInputEl.appendChild(document.createElement('option')).value = "Gov "  + govArrayKey[i];
+        var dropDownChoice = formatInputEl.appendChild(document.createElement('option')).value = "Gov "  + govArrayKey[i];
+        dropDownChoice
       }
     }
     });
