@@ -12,6 +12,10 @@ var newsEl = document.querySelector('.news')
 var articleEl = document.querySelector('.article')
 var cryptoPrice = document.getElementById("crypto");
 var govPrice = document.getElementById("gov");
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+var selectBox = document.getElementById("currency-form")
+var saveBtn = document.querySelector(".AddSaved")
+var saveBox = document.querySelector(".boxInfo")
 
 var savedPrice = document.getElementById("saved")
 
@@ -221,6 +225,31 @@ else {
   (queryString);
 }
 
+<<<<<<< HEAD
+// ,,,,, Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+saveBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  localStorage.setItem("selectBox", JSON.stringify(selectBox));
+// renderMessage();
+});
+
+// function renderMessage() {
+//   var crypto = JSON.parse(localStorage.getItem("selectBox"));
+//   if (crypto !== null) {
+//     document.querySelector("boxInfo").textContent 
+//   }
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+// var storedItem = localStorage.getItem("storedItem");
+
+//  saveBtn.addEventListener("click", function() {
+
+
+//   selectBox.textContent = "count";
+//    localStorage.setItem( saveBox )
+=======
 // function addFormSelectors() { 
 //   var dropDownChoice = function() {
 //    var dropDownEl = document.createElement('option');
@@ -233,7 +262,26 @@ else {
 // add event listener .addEventListener("click", function() 
 
 //}
+>>>>>>> f2f260b96cbba9e654ad6e9d0de40b62b783f7c3
+
+  
+
+<<<<<<< HEAD
+
+// });
+
+// selectBox.textContent = count;
+
+// saveBtn.addEventListener("click", function() {
+ 
+   
+//     selectBox.textContent = count;
+//     localStorage.setItem("count", count);
+  
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 // amountFormEl.addEventListener('submit', handleSearchFormSubmit);
-
+=======
 //input variable from the 
+>>>>>>> f2f260b96cbba9e654ad6e9d0de40b62b783f7c3
