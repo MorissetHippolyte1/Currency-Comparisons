@@ -48,11 +48,11 @@ function matchcrypto(currency, amount) {
       console.log("function input currency");
       console.log(data);
       cryptoPrice.innerHTML = ""
-      for (var i = 0; i < 4; i++) {
+      for (var i = 0; i < 2; i++) {
         cryptoPrice.appendChild(document.createElement('ul')).textContent =
           parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].name;
       }
-      for (var i = 0; i < 9; i++) {
+      for (var i = 0; i < 5; i++) {
         var cryptoSelector = document.createElement('option');
         cryptoSelector.value = data[i].name;
         cryptoSelector.textContent = data[i].name;
@@ -66,23 +66,23 @@ function matchcrypto(currency, amount) {
 }
 matchcrypto("usd", 10);
 
-function logtop20cryptoprices(currency) {
-  var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
-  x = "vs_currency"
-  y = currency
-  requestUrl.searchParams.append(x, y);
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      for (var i = 0; i < 20; i++) {
-        console.log(data[i].name + ": " + data[i].current_price + " " + currency + "(s)");
-      }
-    });
+// function logtop20cryptoprices(currency) {
+//   var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
+//   x = "vs_currency"
+//   y = currency
+//   requestUrl.searchParams.append(x, y);
+//   fetch(requestUrl)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       for (var i = 0; i < 20; i++) {
+//         console.log(data[i].name + ": " + data[i].current_price + " " + currency + "(s)");
+//       }
+//     });
 
-}
-logtop20cryptoprices("eur");
+// }
+// logtop20cryptoprices("eur");
 
 function govcurrencylist() {
   var requestUrl = new URL('https://api.frankfurter.app/currencies?');
@@ -142,29 +142,29 @@ function govcurrencyexchange(currency, amount) {
 }
 govcurrencyexchange("USD", 10);
 
-function news() {
+// function news() {
 
-  fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "crypto-news-live.p.rapidapi.com",
-      "x-rapidapi-key": "1c706ef656msh2980b7876759cc5p1013b9jsn6d3391c16b20"
-    }
-  })
+//   fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
+//     "method": "GET",
+//     "headers": {
+//       "x-rapidapi-host": "crypto-news-live.p.rapidapi.com",
+//       "x-rapidapi-key": "1c706ef656msh2980b7876759cc5p1013b9jsn6d3391c16b20"
+//     }
+//   })
 
-    .then(function (response) {
-      return response.json();
-    })
-    .then(response => {
-      console.log("news")
-      console.log(response);
-    })
-    .catch(err => {
-      console.error(err);
-    });
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(response => {
+//       console.log("news")
+//       console.log(response);
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
 
-}
-news();
+// }
+// news();
 
 var amountFormEl = document.querySelector('#currency-form');
 
@@ -188,7 +188,7 @@ else {
  //getItem.(key)
 // save on array
 }
-\
+
   var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
 
   (queryString);
