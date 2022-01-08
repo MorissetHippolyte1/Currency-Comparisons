@@ -49,7 +49,7 @@ function matchcrypto(currency, amount) {
       });
     
 }
-matchcrypto("usd", 1000000);
+
 
 function logtop50cryptoprices(currency) {
     var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
@@ -111,7 +111,6 @@ function govcurrencyexchange (currency, amount){
     });
   
 }
-govcurrencyexchange("USD", 1000000);
 
 function news (){
   fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
@@ -133,6 +132,22 @@ function news (){
   });
 }
 news();
+
+compareEl.addEventListener("click", usercompare)
+
+function usercompare() {
+  var displayed = false;
+  if (displayed ==false){
+    govcurrencyexchange("USD", 1000000);
+    matchcrypto("usd", 1000000);
+    event.preventDefault();
+    displayed = true;
+  }
+  else{
+    cryptoPrice.remove();
+  }
+}
+
 
 var amountFormEl = document.querySelector('#currency-form');
 
