@@ -18,21 +18,35 @@ var savedPrice = document.getElementById("saved")
 compareEl.onclick = handleSearchFormSubmit;
 addSavedEl.onclick = handleSearchFormSubmit;
 
-function currencylistusd() {
-  var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
-
+function coingeckoApiCall(currency){
+  var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
+  x = "vs_currency"
+  y = currency
+  requestUrl.searchParams.append(x, y);
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log("usd")
-      console.log(data);
-    });
-
-
+      console.log("hello")
+  });
 }
-currencylistusd();
+
+// function currencylistusd() {
+//   var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
+
+//   fetch(requestUrl)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log("usd")
+//       console.log(data);
+//     });
+
+
+// }
+// currencylistusd();
 
 function matchcrypto(currency, amount) {
 
@@ -46,13 +60,13 @@ function matchcrypto(currency, amount) {
     })
     .then(function (data) {
       console.log("function input currency");
-      console.log(data);
+      // console.log(data);
       cryptoPrice.innerHTML = ""
-      for (var i = 0; i < 4; i++) {
+      for (var i = 0; i < 19; i++) {
         cryptoPrice.appendChild(document.createElement('ul')).textContent =
           parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].name;
       }
-      for (var i = 0; i < 9; i++) {
+      for (var i = 0; i < 7; i++) {
         var cryptoSelector = document.createElement('option');
         cryptoSelector.value = data[i].name;
         cryptoSelector.textContent = data[i].name;
@@ -64,45 +78,25 @@ function matchcrypto(currency, amount) {
     });
 
 }
-<<<<<<< HEAD
-
-
-function logtop50cryptoprices(currency) {
-    var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
-    x= "vs_currency"
-    y= currency
-    requestUrl.searchParams.append(x, y);
-    fetch(requestUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        for ( var i = 0; i<49;i++){
-            console.log(data[i].name + ": " + data[i].current_price + " " + currency + "(s)");
-        }
-      });
-    
-=======
 matchcrypto("usd", 10);
 
-function logtop20cryptoprices(currency) {
-  var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
-  x = "vs_currency"
-  y = currency
-  requestUrl.searchParams.append(x, y);
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      for (var i = 0; i < 20; i++) {
-        console.log(data[i].name + ": " + data[i].current_price + " " + currency + "(s)");
-      }
-    });
+// function logtop20cryptoprices(currency) {
+//   var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
+//   x = "vs_currency"
+//   y = currency
+//   requestUrl.searchParams.append(x, y);
+//   fetch(requestUrl)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       for (var i = 0; i < 20; i++) {
+//         console.log(data[i].name + ": " + data[i].current_price + " " + currency + "(s)");
+//       }
+//     });
 
->>>>>>> f2f260b96cbba9e654ad6e9d0de40b62b783f7c3
-}
-logtop20cryptoprices("eur");
+// }
+// logtop20cryptoprices("eur");
 
 function govcurrencylist() {
   var requestUrl = new URL('https://api.frankfurter.app/currencies?');
@@ -139,17 +133,11 @@ function govcurrencyexchange(currency, amount) {
       var govArrayKey = Object.keys(data.rates);
       console.log(govArrayPrice);
       console.log(govArrayKey);
-<<<<<<< HEAD
-      for ( var i = 0; i<19;i++){
-        govPrice.appendChild(document.createElement('ul')).textContent = 
-        parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
-=======
 
       govPrice.innerHTML = "";
       for (var i = 0; i < 4; i++) {
         console.log("whats fgoing on?")
         govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
->>>>>>> f2f260b96cbba9e654ad6e9d0de40b62b783f7c3
       }
         for (var i = 0; i < 9; i++) {
           console.log("Am I here?")
@@ -166,46 +154,31 @@ function govcurrencyexchange(currency, amount) {
       });
 
 }
+govcurrencyexchange("USD", 10);
 
-function news() {
+// function news() {
 
-  fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "crypto-news-live.p.rapidapi.com",
-      "x-rapidapi-key": "1c706ef656msh2980b7876759cc5p1013b9jsn6d3391c16b20"
-    }
-  })
+//   fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
+//     "method": "GET",
+//     "headers": {
+//       "x-rapidapi-host": "crypto-news-live.p.rapidapi.com",
+//       "x-rapidapi-key": "1c706ef656msh2980b7876759cc5p1013b9jsn6d3391c16b20"
+//     }
+//   })
 
-    .then(function (response) {
-      return response.json();
-    })
-    .then(response => {
-      console.log("news")
-      console.log(response);
-    })
-    .catch(err => {
-      console.error(err);
-    });
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(response => {
+//       console.log("news")
+//       console.log(response);
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
 
-}
-news();
-
-compareEl.addEventListener("click", usercompare)
-
-function usercompare() {
-  var displayed = false;
-  if (displayed ==false){
-    govcurrencyexchange("USD", 1000000);
-    matchcrypto("usd", 1000000);
-    event.preventDefault();
-    displayed = true;
-  }
-  else{
-    cryptoPrice.remove();
-  }
-}
-
+// }
+// news();
 
 var amountFormEl = document.querySelector('#currency-form');
 
@@ -229,7 +202,6 @@ else {
  //getItem.(key)
 // save on array
 }
-\
   var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
 
   (queryString);
