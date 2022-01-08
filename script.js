@@ -14,6 +14,10 @@ var newsEl = document.querySelector('.news')
 var articleEl = document.querySelector('.article')
 var cryptoPrice = document.getElementById("crypto");
 var govPrice = document.getElementById("gov");
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+var selectBox = document.getElementById("currency-form")
+var saveBtn = document.querySelector(".AddSaved")
+var saveBox = document.querySelector(".boxInfo")
 
 function currencylistusd (){
     var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
@@ -152,8 +156,44 @@ function handleSearchFormSubmit(event) {
   (queryString);
 }
 
+// ,,,,, Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+saveBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  localStorage.setItem("selectBox", JSON.stringify(selectBox));
+// renderMessage();
+});
+
+// function renderMessage() {
+//   var crypto = JSON.parse(localStorage.getItem("selectBox"));
+//   if (crypto !== null) {
+//     document.querySelector("boxInfo").textContent 
+//   }
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+// var storedItem = localStorage.getItem("storedItem");
+
+//  saveBtn.addEventListener("click", function() {
 
 
+//   selectBox.textContent = "count";
+//    localStorage.setItem( saveBox )
+
+  
+
+
+// });
+
+// selectBox.textContent = count;
+
+// saveBtn.addEventListener("click", function() {
+ 
+   
+//     selectBox.textContent = count;
+//     localStorage.setItem("count", count);
+  
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 // amountFormEl.addEventListener('submit', handleSearchFormSubmit);
-
