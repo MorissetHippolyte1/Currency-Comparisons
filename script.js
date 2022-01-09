@@ -36,21 +36,95 @@ var amount = {
 };
 
 localStorage.setItem("amount", JSON.stringify(amount));
+
+// var stored_data = JSON.para(localStorage.getItem("amount"));
 display();
+
 };
 
 function display(){
   var coin = JSON.parse(localStorage.getItem("amount"));
   if (coin !== null) {
     document.querySelector(".coins").textContent = coin.amountInputEl  + coin.formatInputEl
+
+   
+  //  var data = [];
+
+  //  localStorage.setItem("data", JSON.stringify(data))
+    // localStorage.setItem("Tcoin", JSON.stringify(amount));
+
+    // var retrieved = localStorage.getItem("Tcoin");
+    // var data = JSON.parse(retrieved);
+
+    // data.length;
+    // var data = [];
+    // localStorage.setItem("data", JSON.stringify(data))
+
+    // var datastorage = localStorage.getItem("data")
+    // if (datastorage && datastorage.length) {
+    //   var data = JSON.parse(datastorage)
+    // localStorage.setItem("data", JSON.stringify(data));
+    // var stored_data = JSON.parse(localStorage.getItem("amount"));
+
+    }
+// localStorage["amount"] = JSON.stringify(data);
+
+
+
+    // var stored_data = JSON.parse(localStorage[""])
+
+
+    // var storedCoin = [];
+    // localStorage.setItem("", JSON.stringify(amount));
+    // window.localStorage.getItem("amount")
+    // localStorage.setItem("amount", JSON.stringify(amount));
   }
+<<<<<<< HEAD
+
+  function addEntry(){
+    var existingEntries = JSON.parse(localStorage.getItem(amount));
+    if(existingEntries == null) existingEntries = [];
+    var enteramount = document.getElementById("amount-input").value;
+    var entercoin = document.getElementById("format-input").value;
+    var entry = {
+      "amount": enteramount,
+      "coin": entercoin
+    };
+    localStorage.setItem("entry", JSON.stringify(entry));
+    existingEntries.push(entry);
+    localStorage.setItem("amount", JSON.stringify(existingEntries));
+
+  }
+
+
+
+
+display();
+
+// var row = [display];
+
+// localStorage.setItem("newcoin", JSON.stringify(row));
+
+// var storedCoin = JSON.parse(localStorage.getItem("row"));
+
+// localStorage.coin = JSON.stringify(coin);
+// var storedCoin = JSON.parse(localStorage.coin);
+
+// var storedCoin = [];
+
+// storedCoin[0];
+// localStorage.setItem("amount", JSON.parse(localStorage.getItem("storedCoin"));
+
+=======
 }
 display();
+>>>>>>> 750b06fe7528594d1b3a9d040789a91f096c9892
 
 // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 var startgov = true
 var startcrypto = true
+
 
 
 // function currencylistusd() {
