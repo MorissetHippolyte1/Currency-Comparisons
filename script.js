@@ -12,7 +12,6 @@ var newsEl = document.querySelector('.news')
 var articleEl = document.querySelector('.article')
 var cryptoPrice = document.getElementById("crypto");
 var govPrice = document.getElementById("gov");
-// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 var selectBox = document.getElementById("currency-form")
 var saveBtn = document.querySelector(".AddSaved")
 var saveBox = document.querySelector(".boxInfo")
