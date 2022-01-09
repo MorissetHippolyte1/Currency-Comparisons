@@ -45,6 +45,7 @@ function display(){
     document.querySelector(".coins").textContent = coin.amountInputEl  + coin.formatInputEl
   }
 }
+display();
 
 // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
@@ -87,18 +88,18 @@ function matchcrypto(currency, amount) {
         cryptoPrice.appendChild(document.createElement('ul')).textContent =
           parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
       }
-      // if (startcrypto){
-      //   for (var i = 0; i < 7; i++) {
-      //     var cryptoSelector = document.createElement('option');
-      //     cryptoSelector.value = data[i].id;
-      //     cryptoSelector.textContent = data[i].id;
-      //     if (cryptoSelector) {
-      //       formatInputEl.appendChild(cryptoSelector);
+      if (startcrypto){
+        for (var i = 0; i < 7; i++) {
+          var cryptoSelector = document.createElement('option');
+          cryptoSelector.value = data[i].id;
+          cryptoSelector.textContent = data[i].id;
+          if (cryptoSelector) {
+            formatInputEl.appendChild(cryptoSelector);
   
-      //     }
-      //   }
-      //   startcrypto = false
-      // }
+          }
+        }
+        startcrypto = false
+      }
      
     });
 
@@ -273,12 +274,12 @@ else {
 
 // ,,,,, Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
-saveBtn.addEventListener("click", function(event) {
-  event.preventDefault();
+// saveBtn.addEventListener("click", function(event) {
+//   event.preventDefault();
 
-  localStorage.setItem("selectBox", JSON.stringify(selectBox));
-// renderMessage();
-});
+//   localStorage.setItem("selectBox", JSON.stringify(selectBox));
+// // renderMessage();
+// });
 
 // function renderMessage() {
 //   var crypto = JSON.parse(localStorage.getItem("selectBox"));
