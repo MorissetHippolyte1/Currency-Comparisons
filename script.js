@@ -30,71 +30,40 @@ function handleSave(){
   event.preventDefault();
 
 
-var amount = {
-  amountInputEl: amountInputEl.value,
-  formatInputEl: formatInputEl.value.trim()
-};
 
-localStorage.setItem("amount", JSON.stringify(amount));
-
-// var stored_data = JSON.para(localStorage.getItem("amount"));
+var currency = JSON.parse(localStorage.getItem("store"));
+if(currency == null){
+  currency = [];
+}
+var name = formatInputEl.value;
+var number = amountInputEl.value;
+var savemoney = {
+  "name" : name,
+  "number" : number
+}
+localStorage.setItem("savemoney", JSON.stringify(savemoney))
+currency.push(savemoney)
+localStorage.setItem("store", JSON.stringify(currency))
 display();
 
 };
 
+
 function display(){
-  var coin = JSON.parse(localStorage.getItem("amount"));
+  var coin = JSON.parse(localStorage.getItem("store"));
+  console.log(coin)
   if (coin !== null) {
-    document.querySelector(".coins").textContent = coin.amountInputEl  + coin.formatInputEl
-
-   
-  //  var data = [];
-
-  //  localStorage.setItem("data", JSON.stringify(data))
-    // localStorage.setItem("Tcoin", JSON.stringify(amount));
-
-    // var retrieved = localStorage.getItem("Tcoin");
-    // var data = JSON.parse(retrieved);
-
-    // data.length;
-    // var data = [];
-    // localStorage.setItem("data", JSON.stringify(data))
-
-    // var datastorage = localStorage.getItem("data")
-    // if (datastorage && datastorage.length) {
-    //   var data = JSON.parse(datastorage)
-    // localStorage.setItem("data", JSON.stringify(data));
-    // var stored_data = JSON.parse(localStorage.getItem("amount"));
+    console.log(coin.length)
+    for (var i= 0; i< coin.length;i++){
+      document.querySelector(".coins").appendChild(document.createElement('ul')).textContent =
+            coin[i].name;
+            console.log(coin[i].name)
 
     }
-// localStorage["amount"] = JSON.stringify(data);
 
-
-
-    // var stored_data = JSON.parse(localStorage[""])
-
-
-    // var storedCoin = [];
-    // localStorage.setItem("", JSON.stringify(amount));
-    // window.localStorage.getItem("amount")
-    // localStorage.setItem("amount", JSON.stringify(amount));
+    }
   }
-<<<<<<< HEAD
 
-  function addEntry(){
-    var existingEntries = JSON.parse(localStorage.getItem(amount));
-    if(existingEntries == null) existingEntries = [];
-    var enteramount = document.getElementById("amount-input").value;
-    var entercoin = document.getElementById("format-input").value;
-    var entry = {
-      "amount": enteramount,
-      "coin": entercoin
-    };
-    localStorage.setItem("entry", JSON.stringify(entry));
-    existingEntries.push(entry);
-    localStorage.setItem("amount", JSON.stringify(existingEntries));
-
-  }
 
 
 
@@ -115,10 +84,6 @@ display();
 // storedCoin[0];
 // localStorage.setItem("amount", JSON.parse(localStorage.getItem("storedCoin"));
 
-=======
-}
-display();
->>>>>>> 750b06fe7528594d1b3a9d040789a91f096c9892
 
 // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
