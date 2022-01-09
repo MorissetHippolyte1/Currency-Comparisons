@@ -18,21 +18,21 @@ var savedPrice = document.getElementById("saved")
 compareEl.onclick = handleSearchFormSubmit;
 addSavedEl.onclick = handleSearchFormSubmit;
 
-function currencylistusd() {
-  var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
+// function currencylistusd() {
+//   var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
 
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log("usd")
-      console.log(data);
-    });
+//   fetch(requestUrl)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log("usd")
+//       console.log(data);
+//     });
 
 
-}
-currencylistusd();
+// }
+// currencylistusd();
 
 function matchcrypto(currency, amount) {
 
@@ -50,12 +50,12 @@ function matchcrypto(currency, amount) {
       cryptoPrice.innerHTML = ""
       for (var i = 0; i < 2; i++) {
         cryptoPrice.appendChild(document.createElement('ul')).textContent =
-          parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].name;
+          parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
       }
       for (var i = 0; i < 5; i++) {
         var cryptoSelector = document.createElement('option');
-        cryptoSelector.value = data[i].name;
-        cryptoSelector.textContent = data[i].name;
+        cryptoSelector.value = data[i].id;
+        cryptoSelector.textContent = data[i].id;
         if (cryptoSelector) {
           formatInputEl.appendChild(cryptoSelector);
 
@@ -125,23 +125,34 @@ function govcurrencyexchange(currency, amount) {
         console.log("whats fgoing on?")
         govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
       }
-        for (var i = 0; i < 9; i++) {
-          console.log("Am I here?")
-          // var dropDownChoice = formatInputEl.appendChild(document.createElement('option')).textContent = "Gov "  + govArrayKey[i];
-          // dropDownChoice;   
-          var govCurrencyEl = document.createElement('option')
-          govCurrencyEl.value = govArrayKey[i]
-          govCurrencyEl.textContent = govArrayKey[i]
-          if (govCurrencyEl) {
-            formatInputEl.appendChild(govCurrencyEl)
-          
-          }
-        }
+        
       });
 
 }
 govcurrencyexchange("USD", 10);
+function createDropdown() {
+for (var i = 0; i < 9; i++) {
+  console.log("Am I here?")
+  // var dropDownChoice = formatInputEl.appendChild(document.createElement('option')).textContent = "Gov "  + govArrayKey[i];
+  // dropDownChoice;   
+  var govCurrencyEl = document.createElement('option')
+  govCurrencyEl.value = govArrayKey[i]
+  govCurrencyEl.textContent = govArrayKey[i]
+  if (govCurrencyEl) {
+    formatInputEl.appendChild(govCurrencyEl)
+  
+  }
+}
+for (var i = 0; i < 5; i++) {
+  var cryptoSelector = document.createElement('option');
+  cryptoSelector.value = data[i].id;
+  cryptoSelector.textContent = data[i].id;
+  if (cryptoSelector) {
+    formatInputEl.appendChild(cryptoSelector);
 
+  }
+}
+};
 // function news() {
 
 //   fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
@@ -166,6 +177,9 @@ govcurrencyexchange("USD", 10);
 // }
 // news();
 
+
+createDropdown ();
+
 var amountFormEl = document.querySelector('#currency-form');
 
 function handleSearchFormSubmit(event) {
@@ -189,9 +203,9 @@ else {
 // save on array
 }
 
-  var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
+  // var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
 
-  (queryString);
+  // (queryString);
 }
 
 // function addFormSelectors() { 
