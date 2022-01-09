@@ -84,23 +84,10 @@ function matchcrypto(currency, amount) {
       console.log("function input currency");
       console.log(data);
       cryptoPrice.innerHTML = ""
-<<<<<<< HEAD
-      for (var i = 0; i < 2; i++) {
-=======
       for (var i = 0; i < 19; i++) {
->>>>>>> 1ddb7425a123e919b76ce0cb47bad34d39454d56
         cryptoPrice.appendChild(document.createElement('ul')).textContent =
           parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
       }
-<<<<<<< HEAD
-      for (var i = 0; i < 5; i++) {
-        var cryptoSelector = document.createElement('option');
-        cryptoSelector.value = data[i].name;
-        cryptoSelector.textContent = data[i].name;
-        if (cryptoSelector) {
-          formatInputEl.appendChild(cryptoSelector);
-
-=======
       if (startcrypto){
         for (var i = 0; i < 7; i++) {
           var cryptoSelector = document.createElement('option');
@@ -110,7 +97,6 @@ function matchcrypto(currency, amount) {
             formatInputEl.appendChild(cryptoSelector);
   
           }
->>>>>>> 1ddb7425a123e919b76ce0cb47bad34d39454d56
         }
         startcrypto = false
       }
@@ -199,11 +185,7 @@ function govcurrencyexchange(currency, amount) {
       });
 
 }
-<<<<<<< HEAD
-govcurrencyexchange("USD", 10);
-=======
 govcurrencyexchange("USD", 1);
->>>>>>> 1ddb7425a123e919b76ce0cb47bad34d39454d56
 
 // function news() {
 
@@ -289,12 +271,6 @@ else {
  // localStorage.setItem(key, value) 
  //getItem.(key)
 // save on array
-<<<<<<< HEAD
-}
-
-  var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
-=======
->>>>>>> 1ddb7425a123e919b76ce0cb47bad34d39454d56
 
 // ,,,,, Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
