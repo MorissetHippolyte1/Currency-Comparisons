@@ -84,9 +84,11 @@ function matchcrypto(currency, amount) {
       console.log("function input currency");
       console.log(data);
       cryptoPrice.innerHTML = ""
-      for (var i = 0; i < 19; i++) {
-        cryptoPrice.appendChild(document.createElement('ul')).textContent =
-          parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
+      if (!startcrypto){
+        for (var i = 0; i < 19; i++) {
+          cryptoPrice.appendChild(document.createElement('ul')).textContent =
+            parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
+        }
       }
       if (startcrypto){
         for (var i = 0; i < 7; i++) {
@@ -161,11 +163,13 @@ function govcurrencyexchange(currency, amount) {
       console.log(govArrayKey);
 
       govPrice.innerHTML = "";
-      govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(amount).toFixed(2) + " " + currency;
-      for (var i = 0; i < 19; i++) {
-        console.log("whats fgoing on?")
-        govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
-      }
+      if (!startgov){
+        govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(amount).toFixed(2) + " " + currency;
+        for (var i = 0; i < 19; i++) {
+          console.log("whats fgoing on?")
+          govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
+        }
+      }     
       if (startgov){
         var govCurrencyEl = document.createElement('option')
           govCurrencyEl.value = "USD"
