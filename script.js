@@ -167,7 +167,14 @@ function govcurrencyexchange(currency, amount) {
         govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
       }
       if (startgov){
-        for (var i = 0; i < 9; i++) {
+        var govCurrencyEl = document.createElement('option')
+          govCurrencyEl.value = "USD"
+          govCurrencyEl.textContent = "USD"
+          if (govCurrencyEl) {
+            formatInputEl.appendChild(govCurrencyEl)
+          
+          }
+        for (var i = 0; i < 19; i++) {
           console.log("Am I here?")
           // var dropDownChoice = formatInputEl.appendChild(document.createElement('option')).textContent = "Gov "  + govArrayKey[i];
           // dropDownChoice;   
