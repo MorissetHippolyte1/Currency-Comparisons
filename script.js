@@ -1,9 +1,9 @@
 var titleEl = document.querySelector('.title')
 var searchFormEl = document.querySelector('#search-form')
-var amountInputEl = document.querySelector('#amount-input')
-var formatInputEl = document.querySelector('#format-input')
+var amountInputEl = document.querySelector('#amount-input');
+var formatInputEl = document.querySelector('#format-input');
 var compareEl = document.querySelector('.compare')
-var addSavedEl = document.querySelector('.addSaved')
+var addSavedEl = document.querySelector('.addSaved');
 var boxHeader = document.querySelector('boxHeader')
 var boxTitle = document.querySelector('boxTitle')
 var boxInfoEl = document.querySelector('.boxInfo')
@@ -19,7 +19,34 @@ var saveBox = document.querySelector(".boxInfo")
 var savedPrice = document.getElementById("saved")
 
 compareEl.onclick = handleSearchFormSubmit;
-addSavedEl.onclick = handleSearchFormSubmit;
+addSavedEl.onclick = handleSave;
+
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+function handleSave(){
+     
+  console.log("save")
+  event.preventDefault();
+
+
+var amount = {
+  amountInputEl: amountInputEl.value,
+  formatInputEl: formatInputEl.value.trim()
+};
+
+localStorage.setItem("amount", JSON.stringify(amount));
+display();
+};
+
+function display(){
+  var coin = JSON.parse(localStorage.getItem("amount"));
+  if (coin !== null) {
+    document.querySelector(".coins").textContent = coin.amountInputEl  + coin.formatInputEl
+  }
+}
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 var startgov = true
 var startcrypto = true
