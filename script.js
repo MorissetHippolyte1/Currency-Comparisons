@@ -21,6 +21,7 @@ var savedPrice = document.getElementById("saved")
 compareEl.onclick = handleSearchFormSubmit;
 addSavedEl.onclick = handleSave;
 
+var slow = 0;
 
 // ,,,,,,,,,,,,,,,,,,,,,,,,,Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 function handleSave(){
@@ -44,7 +45,6 @@ localStorage.setItem("savemoney", JSON.stringify(savemoney))
 currency.push(savemoney)
 localStorage.setItem("store", JSON.stringify(currency))
 display();
-
 };
 
 
@@ -53,11 +53,10 @@ function display(){
   console.log(coin)
   if (coin !== null) {
     console.log(coin.length)
-    for (var i= 0; i< coin.length;i++){
+    for (var i= slow; i< coin.length && i < 9;i++){
       document.querySelector(".coins").appendChild(document.createElement('ul')).textContent =
             coin[i].name;
-            console.log(coin[i].name)
-
+            slow++
     }
 
     }
@@ -268,6 +267,7 @@ function handleSearchFormSubmit(event) {
 
   var amountInputVal = document.querySelector('#amount-input').value;
   var formatInputVal = document.querySelector('#format-input').value;
+  
 
   if (!amountInputVal || !formatInputVal) {
     console.error('You need a search input value!');
