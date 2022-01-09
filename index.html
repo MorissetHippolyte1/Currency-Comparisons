@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Comparison</title>
+    <!-- <link type="stylesheet" src="reset.css"><link> -->
 </head>
 
 <body class="body">
@@ -13,13 +14,15 @@
         <h1 class="title">
         </h1>
     </header>
+    <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, -->
     <main>
         <form id="currency-form" class="form w-100">
-            <input id="amount-input" class="form-input w-100" type="number" placeholder="Amount">
+            <input id="amount-input" class="form-input w-100" type="number" placeholder="Amount" onclick="">
             <select id="format-input" class="form-input w-100">
-                <option value="" disabled selected>Select a Currency
-                </option>
+                
+                <!-- <input type= "submit" value="submit" onclick= "store()"> -->
         </form>
+        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         </select>
         <button class="compare">Compare Currency</button>
         <button class="addSaved">Add to Saved List</button>
@@ -50,6 +53,8 @@
             <header class="boxHeader">
                 <h2 class="boxTitle">
                     Saved Currencies
+                    <p class="coins"></p>
+
                 </h2>
             </header>
             <div class="boxInfo">
