@@ -79,6 +79,7 @@ function display(){
     // window.localStorage.getItem("amount")
     // localStorage.setItem("amount", JSON.stringify(amount));
   }
+<<<<<<< HEAD
 
   function addEntry(){
     var existingEntries = JSON.parse(localStorage.getItem(amount));
@@ -114,6 +115,10 @@ display();
 // storedCoin[0];
 // localStorage.setItem("amount", JSON.parse(localStorage.getItem("storedCoin"));
 
+=======
+}
+display();
+>>>>>>> 750b06fe7528594d1b3a9d040789a91f096c9892
 
 // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
@@ -153,22 +158,24 @@ function matchcrypto(currency, amount) {
       console.log("function input currency");
       console.log(data);
       cryptoPrice.innerHTML = ""
-      for (var i = 0; i < 19; i++) {
-        cryptoPrice.appendChild(document.createElement('ul')).textContent =
-          parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
+      if (!startcrypto){
+        for (var i = 0; i < 19; i++) {
+          cryptoPrice.appendChild(document.createElement('ul')).textContent =
+            parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
+        }
       }
-      // if (startcrypto){
-      //   for (var i = 0; i < 7; i++) {
-      //     var cryptoSelector = document.createElement('option');
-      //     cryptoSelector.value = data[i].id;
-      //     cryptoSelector.textContent = data[i].id;
-      //     if (cryptoSelector) {
-      //       formatInputEl.appendChild(cryptoSelector);
+      if (startcrypto){
+        for (var i = 0; i < 7; i++) {
+          var cryptoSelector = document.createElement('option');
+          cryptoSelector.value = data[i].id;
+          cryptoSelector.textContent = data[i].id;
+          if (cryptoSelector) {
+            formatInputEl.appendChild(cryptoSelector);
   
-      //     }
-      //   }
-      //   startcrypto = false
-      // }
+          }
+        }
+        startcrypto = false
+      }
      
     });
 
@@ -230,13 +237,22 @@ function govcurrencyexchange(currency, amount) {
       console.log(govArrayKey);
 
       govPrice.innerHTML = "";
-      govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(amount).toFixed(2) + " " + currency;
-      for (var i = 0; i < 19; i++) {
-        console.log("whats fgoing on?")
-        govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
-      }
+      if (!startgov){
+        govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(amount).toFixed(2) + " " + currency;
+        for (var i = 0; i < 19; i++) {
+          console.log("whats fgoing on?")
+          govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
+        }
+      }     
       if (startgov){
-        for (var i = 0; i < 9; i++) {
+        var govCurrencyEl = document.createElement('option')
+          govCurrencyEl.value = "USD"
+          govCurrencyEl.textContent = "USD"
+          if (govCurrencyEl) {
+            formatInputEl.appendChild(govCurrencyEl)
+          
+          }
+        for (var i = 0; i < 19; i++) {
           console.log("Am I here?")
           // var dropDownChoice = formatInputEl.appendChild(document.createElement('option')).textContent = "Gov "  + govArrayKey[i];
           // dropDownChoice;   
@@ -343,12 +359,12 @@ else {
 
 // ,,,,, Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
-saveBtn.addEventListener("click", function(event) {
-  event.preventDefault();
+// saveBtn.addEventListener("click", function(event) {
+//   event.preventDefault();
 
-  localStorage.setItem("selectBox", JSON.stringify(selectBox));
-// renderMessage();
-});
+//   localStorage.setItem("selectBox", JSON.stringify(selectBox));
+// // renderMessage();
+// });
 
 // function renderMessage() {
 //   var crypto = JSON.parse(localStorage.getItem("selectBox"));
@@ -385,6 +401,7 @@ saveBtn.addEventListener("click", function(event) {
 
 // selectBox.textContent = count;
 
+
 //input variable from the 
 // saveBtn.addEventListener("click", function() {
  
@@ -398,4 +415,5 @@ saveBtn.addEventListener("click", function(event) {
 // amountFormEl.addEventListener('submit', handleSearchFormSubmit);
 
 //input variable from the 
+
 
