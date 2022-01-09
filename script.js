@@ -1,9 +1,9 @@
 var titleEl = document.querySelector('.title')
 var searchFormEl = document.querySelector('#search-form')
-var amountInputEl = document.querySelector('#amount-input')
-var formatInputEl = document.querySelector('#format-input')
+var amountInputEl = document.querySelector('#amount-input');
+var formatInputEl = document.querySelector('#format-input');
 var compareEl = document.querySelector('.compare')
-var addSavedEl = document.querySelector('.addSaved')
+var addSavedEl = document.querySelector('.addSaved');
 var boxHeader = document.querySelector('boxHeader')
 var boxTitle = document.querySelector('boxTitle')
 var boxInfoEl = document.querySelector('.boxInfo')
@@ -12,11 +12,46 @@ var newsEl = document.querySelector('.news')
 var articleEl = document.querySelector('.article')
 var cryptoPrice = document.getElementById("crypto");
 var govPrice = document.getElementById("gov");
+var selectBox = document.getElementById("currency-form")
+var saveBtn = document.querySelector(".AddSaved")
+var saveBox = document.querySelector(".boxInfo")
 
 var savedPrice = document.getElementById("saved")
 
 compareEl.onclick = handleSearchFormSubmit;
-addSavedEl.onclick = handleSearchFormSubmit;
+addSavedEl.onclick = handleSave;
+
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+function handleSave(){
+     
+  console.log("save")
+  event.preventDefault();
+
+
+var amount = {
+  amountInputEl: amountInputEl.value,
+  formatInputEl: formatInputEl.value.trim()
+};
+
+localStorage.setItem("amount", JSON.stringify(amount));
+display();
+};
+
+function display(){
+  var coin = JSON.parse(localStorage.getItem("amount"));
+  if (coin !== null) {
+    document.querySelector(".coins").textContent = coin.amountInputEl  + coin.formatInputEl
+  }
+}
+display();
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+var startgov = true
+var startcrypto = true
+
 
 // function currencylistusd() {
 //   var requestUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
@@ -37,6 +72,7 @@ addSavedEl.onclick = handleSearchFormSubmit;
 function matchcrypto(currency, amount) {
 
   var requestUrl = new URL('https://api.coingecko.com/api/v3/coins/markets?');
+
   x = "vs_currency"
   y = currency
   requestUrl.searchParams.append(x, y);
@@ -48,19 +84,23 @@ function matchcrypto(currency, amount) {
       console.log("function input currency");
       console.log(data);
       cryptoPrice.innerHTML = ""
-      for (var i = 0; i < 2; i++) {
+      for (var i = 0; i < 19; i++) {
         cryptoPrice.appendChild(document.createElement('ul')).textContent =
           parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
       }
-      for (var i = 0; i < 5; i++) {
-        var cryptoSelector = document.createElement('option');
-        cryptoSelector.value = data[i].id;
-        cryptoSelector.textContent = data[i].id;
-        if (cryptoSelector) {
-          formatInputEl.appendChild(cryptoSelector);
-
+      if (startcrypto){
+        for (var i = 0; i < 7; i++) {
+          var cryptoSelector = document.createElement('option');
+          cryptoSelector.value = data[i].id;
+          cryptoSelector.textContent = data[i].id;
+          if (cryptoSelector) {
+            formatInputEl.appendChild(cryptoSelector);
+  
+          }
         }
+        startcrypto = false
       }
+     
     });
 
 }
@@ -121,38 +161,32 @@ function govcurrencyexchange(currency, amount) {
       console.log(govArrayKey);
 
       govPrice.innerHTML = "";
-      for (var i = 0; i < 4; i++) {
+      govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(amount).toFixed(2) + " " + currency;
+      for (var i = 0; i < 19; i++) {
         console.log("whats fgoing on?")
         govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
       }
-        
+      if (startgov){
+        for (var i = 0; i < 9; i++) {
+          console.log("Am I here?")
+          // var dropDownChoice = formatInputEl.appendChild(document.createElement('option')).textContent = "Gov "  + govArrayKey[i];
+          // dropDownChoice;   
+          var govCurrencyEl = document.createElement('option')
+          govCurrencyEl.value = govArrayKey[i]
+          govCurrencyEl.textContent = govArrayKey[i]
+          if (govCurrencyEl) {
+            formatInputEl.appendChild(govCurrencyEl)
+          
+          }
+        }
+        startgov = false
+      }
+       
       });
 
 }
-govcurrencyexchange("USD", 10);
-function createDropdown() {
-for (var i = 0; i < 9; i++) {
-  console.log("Am I here?")
-  // var dropDownChoice = formatInputEl.appendChild(document.createElement('option')).textContent = "Gov "  + govArrayKey[i];
-  // dropDownChoice;   
-  var govCurrencyEl = document.createElement('option')
-  govCurrencyEl.value = govArrayKey[i]
-  govCurrencyEl.textContent = govArrayKey[i]
-  if (govCurrencyEl) {
-    formatInputEl.appendChild(govCurrencyEl)
-  
-  }
-}
-for (var i = 0; i < 5; i++) {
-  var cryptoSelector = document.createElement('option');
-  cryptoSelector.value = data[i].id;
-  cryptoSelector.textContent = data[i].id;
-  if (cryptoSelector) {
-    formatInputEl.appendChild(cryptoSelector);
+govcurrencyexchange("USD", 1);
 
-  }
-}
-};
 // function news() {
 
 //   fetch("https://crypto-news-live.p.rapidapi.com/news/coindesk", {
@@ -177,9 +211,6 @@ for (var i = 0; i < 5; i++) {
 // }
 // news();
 
-
-createDropdown ();
-
 var amountFormEl = document.querySelector('#currency-form');
 
 function handleSearchFormSubmit(event) {
@@ -189,25 +220,81 @@ function handleSearchFormSubmit(event) {
   var amountInputVal = document.querySelector('#amount-input').value;
   var formatInputVal = document.querySelector('#format-input').value;
 
-  if (!amountInputVal) {
+  if (!amountInputVal || !formatInputVal) {
     console.error('You need a search input value!');
     return;
   }
 else {
-  govcurrencyexchange(formatInputVal, amountInputVal);
-  matchcrypto(formatInputVal, amountInputVal);
+  fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      formatString = String(formatInputVal);
+      formatString = formatString.toLowerCase();
+      console.log(data.indexOf(formatString))
+      var index = data.find(o => o.id == formatString)
+      if (index == undefined){
+        index = 0
+      }
+      console.log(index)
+      if(index.id == formatString){
+        console.log("match");
+        console.log(formatString);
+        cryptoPrice.innerHTML = ""
+        govPrice.innerHTML = ""
+        for(var i = 0; i<100;i++){
+          if(data[i].id == formatString){
+            amountInputVal = data[i].current_price * amountInputVal
+            console.log('format change')
+            console.log(amountInputVal)
+          }
+        }
+        formatInputVal = "USD"
+        govcurrencyexchange(formatInputVal, amountInputVal);
+        matchcrypto(formatInputVal, amountInputVal);
+      }
+      else{
+        cryptoPrice.innerHTML = ""
+        govPrice.innerHTML = ""
+        govcurrencyexchange(formatInputVal, amountInputVal);
+        matchcrypto(formatInputVal, amountInputVal);
+      }
+    });
+
+  
 
 
+
+  }
+}
  // localStorage.setItem(key, value) 
  //getItem.(key)
 // save on array
-}
 
-  // var queryString = 'https://api.coingecko.com/api/v3/coins/list' + formatInputVal;
+// ,,,,, Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
-  // (queryString);
-}
+// saveBtn.addEventListener("click", function(event) {
+//   event.preventDefault();
 
+//   localStorage.setItem("selectBox", JSON.stringify(selectBox));
+// // renderMessage();
+// });
+
+// function renderMessage() {
+//   var crypto = JSON.parse(localStorage.getItem("selectBox"));
+//   if (crypto !== null) {
+//     document.querySelector("boxInfo").textContent 
+//   }
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+// var storedItem = localStorage.getItem("storedItem");
+
+//  saveBtn.addEventListener("click", function() {
+
+
+//   selectBox.textContent = "count";
+//    localStorage.setItem( saveBox )
 // function addFormSelectors() { 
 //   var dropDownChoice = function() {
 //    var dropDownEl = document.createElement('option');
@@ -220,6 +307,24 @@ else {
 // add event listener .addEventListener("click", function() 
 
 //}
+
+
+  
+
+
+// });
+
+// selectBox.textContent = count;
+
+//input variable from the 
+// saveBtn.addEventListener("click", function() {
+ 
+   
+//     selectBox.textContent = count;
+//     localStorage.setItem("count", count);
+  
+
+// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 // amountFormEl.addEventListener('submit', handleSearchFormSubmit);
 
