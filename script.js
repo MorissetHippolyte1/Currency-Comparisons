@@ -121,11 +121,17 @@ function matchcrypto(currency, amount) {
       console.log("function input currency");
       console.log(data);
       cryptoPrice.innerHTML = ""
+<<<<<<< HEAD
+      for (var i = 0; i < 19; i++) {
+        cryptoPrice.appendChild(document.createElement('ul')).textContent =
+          parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
+=======
       if (!startcrypto){
         for (var i = 0; i < 19; i++) {
           cryptoPrice.appendChild(document.createElement('ul')).textContent =
             parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
         }
+>>>>>>> b1c98b71d581d582337a5d7ce8b0746ce10dbedc
       }
       if (startcrypto){
         for (var i = 0; i < 7; i++) {
