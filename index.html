@@ -5,60 +5,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+
     <title>Currency Comparison</title>
     <!-- <link type="stylesheet" src="reset.css"><link> -->
 </head>
 
 <body class="body">
-    <header>
-        <h1 class="title">
-        </h1>
+    <header class="container-fluid bg-dark text-light mb-5 p-3">
+        <div class="d-flex align-items-center">
+            <h1 class="title">CURRENCY COMPARISON
+            </h1>
+            <h3 class="ml-auto">
+                Lyle, Money, Trejo, Hippolyte
+            </h3>
+        </div>
     </header>
     <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, -->
     <main>
-        <form id="currency-form" class="form w-100">
-            <input id="amount-input" class="form-input w-100" type="number" placeholder="Amount" onclick="">
-            <select id="format-input" class="form-input w-100">
-                
-                <!-- <input type= "submit" value="submit" onclick= "store()"> -->
-        </form>
-        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, -->
-        </select>
-        <button class="compare">Compare Currency</button>
-        <button class="addSaved">Add to Saved List</button>
-        <section class="currencyBox">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 col-xl-9">
+                    <form id="search-form" class="form w-30">
+                        <input id="amount-input" class="form-input w-30" type="number" placeholder="Amount">
+                        <select id="format-input" class="form-input w-30">
+                            <option value="" disabled selected>Select a Currency
+                            </option>
+                    </form>
+                </div>
+                <div class="col-12 col-md-4 col-xl-3">
+                </select>
+                <button class="compare">Compare Currency</button>
+                <button class="addSaved">Add to Favorite List</button>
+            </div>
+            </div>
+        </div>
+        </div>
+         <!-- Four column layout -->
+  <section class="currencyBox container my-5">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-3 bg-dark text-light gap-3 border">
+
             <header class="boxHeader">
                 <h2 class="boxTitle">
-                    Government Backed Currencies
+                    Gov Currencies
                 </h2>
             </header>
-
-            <div class="boxInfo" id = 'gov'>
-
+            <div class="boxInfo" id='gov'>
             </div>
-        </section>
-        <section class="currencyBox">
+        </div>
+        <div class="currencyBox col-12 col-md-6 col-lg-3 text-dark bg-light gap-3 border">
             <header class="boxHeader">
                 <h2 class="boxTitle">
                     Cryptocurrencies
                 </h2>
             </header>
-
-            <div class="boxInfo" id = 'crypto'>
-
-
+            <div class="boxInfo" id='crypto'>
             </div>
-        </section>
-        <section class="currencyBox" id = "saved">
+        </div>
+        <div class="currencyBox col-12 col-md-6 col-lg-3 bg-dark text-light gap-3 border" id="saved">
             <header class="boxHeader">
                 <h2 class="boxTitle">
-                    Saved Currencies
+                    Favorite Currencies
                     <p class="coins"></p>
 
                 </h2>
             </header>
             <div class="boxInfo">
             </div>
+        </div>
         </section>
         <section class="news">
             <div class="article">

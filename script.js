@@ -21,36 +21,73 @@ var savedPrice = document.getElementById("saved")
 compareEl.onclick = handleSearchFormSubmit;
 addSavedEl.onclick = handleSave;
 
+var slow = 0;
 
 // ,,,,,,,,,,,,,,,,,,,,,,,,,Local Storage,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-// ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 function handleSave(){
      
   console.log("save")
   event.preventDefault();
 
 
-var amount = {
-  amountInputEl: amountInputEl.value,
-  formatInputEl: formatInputEl.value.trim()
-};
 
-localStorage.setItem("amount", JSON.stringify(amount));
+var currency = JSON.parse(localStorage.getItem("store"));
+if(currency == null){
+  currency = [];
+}
+var name = formatInputEl.value;
+var number = amountInputEl.value;
+var savemoney = {
+  "name" : name,
+  "number" : number
+}
+localStorage.setItem("savemoney", JSON.stringify(savemoney))
+currency.push(savemoney)
+localStorage.setItem("store", JSON.stringify(currency))
 display();
 };
+
 
 function display(){
-  var coin = JSON.parse(localStorage.getItem("amount"));
+  var coin = JSON.parse(localStorage.getItem("store"));
+  console.log(coin)
   if (coin !== null) {
-    document.querySelector(".coins").textContent = coin.amountInputEl  + coin.formatInputEl
+    console.log(coin.length)
+    for (var i= slow; i< coin.length && i < 9;i++){
+      document.querySelector(".coins").appendChild(document.createElement('ul')).textContent =
+            coin[i].name;
+            slow++
+    }
+
+    }
   }
-}
+
+
+
+
+
 display();
+
+// var row = [display];
+
+// localStorage.setItem("newcoin", JSON.stringify(row));
+
+// var storedCoin = JSON.parse(localStorage.getItem("row"));
+
+// localStorage.coin = JSON.stringify(coin);
+// var storedCoin = JSON.parse(localStorage.coin);
+
+// var storedCoin = [];
+
+// storedCoin[0];
+// localStorage.setItem("amount", JSON.parse(localStorage.getItem("storedCoin"));
+
 
 // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 var startgov = true
 var startcrypto = true
+
 
 
 // function currencylistusd() {
@@ -84,9 +121,17 @@ function matchcrypto(currency, amount) {
       console.log("function input currency");
       console.log(data);
       cryptoPrice.innerHTML = ""
+<<<<<<< HEAD
       for (var i = 0; i < 19; i++) {
         cryptoPrice.appendChild(document.createElement('ul')).textContent =
           parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
+=======
+      if (!startcrypto){
+        for (var i = 0; i < 19; i++) {
+          cryptoPrice.appendChild(document.createElement('ul')).textContent =
+            parseFloat(amount / data[i].current_price).toFixed(2) + " " + data[i].id;
+        }
+>>>>>>> b1c98b71d581d582337a5d7ce8b0746ce10dbedc
       }
       if (startcrypto){
         for (var i = 0; i < 7; i++) {
@@ -161,13 +206,22 @@ function govcurrencyexchange(currency, amount) {
       console.log(govArrayKey);
 
       govPrice.innerHTML = "";
-      govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(amount).toFixed(2) + " " + currency;
-      for (var i = 0; i < 19; i++) {
-        console.log("whats fgoing on?")
-        govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
-      }
+      if (!startgov){
+        govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(amount).toFixed(2) + " " + currency;
+        for (var i = 0; i < 19; i++) {
+          console.log("whats fgoing on?")
+          govPrice.appendChild(document.createElement('ul')).textContent = parseFloat(govArrayPrice[i]).toFixed(2) + " " + govArrayKey[i];
+        }
+      }     
       if (startgov){
-        for (var i = 0; i < 9; i++) {
+        var govCurrencyEl = document.createElement('option')
+          govCurrencyEl.value = "USD"
+          govCurrencyEl.textContent = "USD"
+          if (govCurrencyEl) {
+            formatInputEl.appendChild(govCurrencyEl)
+          
+          }
+        for (var i = 0; i < 19; i++) {
           console.log("Am I here?")
           // var dropDownChoice = formatInputEl.appendChild(document.createElement('option')).textContent = "Gov "  + govArrayKey[i];
           // dropDownChoice;   
@@ -219,6 +273,7 @@ function handleSearchFormSubmit(event) {
 
   var amountInputVal = document.querySelector('#amount-input').value;
   var formatInputVal = document.querySelector('#format-input').value;
+  
 
   if (!amountInputVal || !formatInputVal) {
     console.error('You need a search input value!');
@@ -316,6 +371,7 @@ else {
 
 // selectBox.textContent = count;
 
+
 //input variable from the 
 // saveBtn.addEventListener("click", function() {
  
@@ -329,4 +385,5 @@ else {
 // amountFormEl.addEventListener('submit', handleSearchFormSubmit);
 
 //input variable from the 
+
 
